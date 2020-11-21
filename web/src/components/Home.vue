@@ -39,8 +39,7 @@ export default {
     },
     data() {
         return {
-            defaultOptions: {animationData, loop: true, autoplay: true},
-            animationSpeed: 1
+            defaultOptions: {animationData, loop: true, autoplay: true}
         }
     }
 }

@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <Home />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
 
 export default {
   name: 'App',
   components: {
-    Home
   }
 }
 </script>
@@ -20,6 +18,7 @@ export default {
   --roboto: 'Roboto', sans-serif;
   --bg-color:  #000478;
   --purple: #a615bd;
+  --form-bg: #dbf8ff;
 }
 
 * {
