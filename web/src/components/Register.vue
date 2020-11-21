@@ -27,22 +27,6 @@
                 <div class="options">
                     <span>I forgot my password</span>
                 </div>
-                <br>
-                <p>OR</p>
-                <br>
-                <button class="google-login">
-                    <div class="google-real-button">
-                        <img src="../assets/images/google.png" alt=""> LOGIN WITH GOOGLE
-                    </div>
-                    <div class="google-shadow-button">
-
-                    </div>
-                </button>
-                <br>
-                <br>
-                <div class="create-account">
-                    <p>Dont have an account? <strong>Create one!</strong></p>
-                </div>
             </form>
         </div>
     </div>
@@ -211,48 +195,5 @@ export default {
     top: 20px;
     cursor: pointer;
     user-select: none;
-}
-
-.google-login {
-    width: 100%;
-    border: 0;
-    background-color: transparent;
-    margin-top: 5px;
-    position: relative;
-    cursor: pointer;
-}
-
-.google-shadow-button {
-    width: 100%;
-    height: 50px;
-    border-radius: 4px;
-    background-color: var(--underwater);
-}
-
-.google-real-button {
-    width: 100%;
-    height: 50px;
-    border-radius: 4px;
-    background-color: var(--lightblue);
-    position: absolute;
-    bottom: 5px;
-    transition: 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.google-real-button img {
-    width: 20px;
-    margin-right: 20px;
-}
-
-.google-login:hover > .google-real-button {
-    bottom: 0px;
-}
-
-.create-account strong {
-    color: var(--underwater);
 }
 </style>

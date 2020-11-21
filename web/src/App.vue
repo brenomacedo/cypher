@@ -20,6 +20,8 @@ export default {
   --purple: #a615bd;
   --form-bg: #dbf8ff;
   --purple-dark: #730078;
+  --lightblue: #34cceb;
+  --underwater: #1e6d7d;
 }
 
 * {
