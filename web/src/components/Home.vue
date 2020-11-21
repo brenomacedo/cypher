@@ -9,7 +9,7 @@
                 <button class="sign-up">SIGN UP</button>
             </div>
         </div>
-        <div class="info">
+        <div class="info" data-aos="zoom-in">
             <div class="description">
                 <img src="../assets/images/logo.png" alt="logo">
                 <p>A social media develop to you share all your want, like what are you doing,
@@ -17,9 +17,11 @@
                     join into this community and help us to increase it!</p>
                 <button class="home-button">EXPLORE</button>
             </div>
+            
             <div class="animation">
                 <lottie :options="defaultOptions" :width="400" :height="400"/>
             </div>
+            
         </div>
     </div>
 </template>
@@ -27,6 +29,8 @@
 <script>
 import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/social-media.json'
+import AOS from 'aos'
+AOS.init()
 
 export default {
     name: 'Home',
@@ -76,7 +80,6 @@ export default {
 
 .animation {
     flex: 1;
-    height: 500px;
     padding-top: 80px;
 }
 
@@ -141,5 +144,22 @@ export default {
     border-radius: 2px;
     margin-left: 5px;
     cursor: pointer;
+}
+
+@media (max-width: 1050px){
+    .info {
+        flex-direction: column-reverse;
+    }
+}
+
+@media (max-width: 610px) {
+    .description img {
+        width: 300px;
+        padding-left: 20px;
+    }
+
+    .description p {
+        width: 400px;
+    }
 }
 </style>
