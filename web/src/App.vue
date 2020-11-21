@@ -19,6 +19,7 @@ export default {
   --bg-color:  #000478;
   --purple: #a615bd;
   --form-bg: #dbf8ff;
+  --purple-dark: #730078;
 }
 
 * {

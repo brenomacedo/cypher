@@ -8,6 +8,26 @@
             </div>
         </div>
         <div class="form">
+            <form>
+                <h3>Sign in to continue...</h3>
+                <input type="text" placeholder="Your email">
+                <div class="password-input">
+                    <input :type="showOrHide" placeholder="Your password">
+                    <span v-if="hide" @click="handleHide">SHOW</span>
+                    <span v-else @click="handleHide">HIDE</span>
+                </div>
+                <button class="form-button">
+                    <div class="button-shadow">
+
+                    </div>
+                    <div class="real-button">
+                        LOGIN
+                    </div>
+                </button>
+                <div class="options">
+                    <span>I forgot my password</span>
+                </div>
+            </form>
         </div>
     </div>
 </template>
@@ -23,7 +43,18 @@ export default {
     },
     data() {
         return {
-            defaultOptions: { animationData, loop: true, autoplay: true }
+            defaultOptions: { animationData, loop: true, autoplay: true },
+            hide: true
+        }
+    },
+    computed: {
+        showOrHide: function () {
+            return this.hide ? 'password' : 'text'
+        }
+    },
+    methods: {
+        handleHide: function () {
+            this.hide = !this.hide
         }
     }
 }
@@ -75,5 +106,94 @@ export default {
     min-height: 100vh;
     width: 450px;
     background-color: var(--form-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--roboto);
+}
+
+.form form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form form input {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 50px;
+    outline: none;
+    padding-left: 12px;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.form h3 {
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.options {
+    width: 100%;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.options span {
+    cursor: pointer;
+}
+
+.form-button {
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 5px;
+    position: relative;
+}
+
+.real-button {
+    width: 100%;
+    border-radius: 4px;
+    height: 50px;
+    background-color: var(--purple);
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    transition: 0.2s;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-shadow {
+    width: 100%;
+    border-radius: 4px;
+    height: 50px;
+    background-color: var(--purple-dark);
+}
+
+.form-button:hover > .real-button {
+    bottom: 0;
+}
+
+.password-input {
+    width: 100%;
+    font-size: 10px;
+    font-weight: bolder;
+    position: relative;
+}
+
+.password-input span {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    cursor: pointer;
+    user-select: none;
 }
 </style>
