@@ -9,37 +9,42 @@ const router = new Router({
         {
             path: "/",
             name: "home",
-            component: () => import(/* webpackChunkName: "Home" */ './components/Home.vue')
+            component: () => import(/* webpackChunkName: "Home" */ './pages/Home.vue')
         },
         {
             path: "/login",
             name: "login",
-            component: () => import(/* webpackChunkName: "Login" */ './components/Login.vue')
+            component: () => import(/* webpackChunkName: "Login" */ './pages/Login.vue')
         },
         {
             path: "/register",
             name: "register",
-            component: () => import(/* wepackChunkName: "Register" */ './components/Register.vue')
+            component: () => import(/* wepackChunkName: "Register" */ './pages/Register.vue')
         },
         {
             path: "/forgot-password",
             name: "forgotpassword",
-            component: () => import(/* webpackChunkName: "ForgotPassword" */ './components/ForgotPassword.vue')
+            component: () => import(/* webpackChunkName: "ForgotPassword" */ './pages/ForgotPassword.vue')
         },
         {
             path: "/reset-password",
             name: "resetpassword",
-            component: () => import(/* webpackChunkName: "ResetPassword" */ './components/ResetPassword.vue')
+            component: () => import(/* webpackChunkName: "ResetPassword" */ './pages/ResetPassword.vue')
         },
         {
             path: "/reset-password/success",
             name: "rpsuccess",
-            component: () => import(/* webpackChunkName: "ResetPasswordSuccess" */ './components/ResetPasswordSuccess.vue')
+            component: () => import(/* webpackChunkName: "ResetPasswordSuccess" */ './pages/ResetPasswordSuccess.vue')
         },
         {
             path: "/register/success",
             name: "rsuccess",
-            component: () => import(/* webpackChunkName: "RegisterSuccess" */ './components/RegisterSuccess.vue')
+            component: () => import(/* webpackChunkName: "RegisterSuccess" */ './pages/RegisterSuccess.vue')
+        },
+        {
+            path: "/error",
+            name: "notfound",
+            component: () => import(/* webpackChuknName: "NotFound" */ './pages/NotFound.vue')
         }
     ]
 })
