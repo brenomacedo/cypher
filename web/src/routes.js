@@ -30,6 +30,16 @@ const router = new Router({
             path: "/reset-password",
             name: "resetpassword",
             component: () => import(/* webpackChunkName: "ResetPassword" */ './components/ResetPassword.vue')
+        },
+        {
+            path: "/reset-password/success",
+            name: "rpsuccess",
+            component: () => import(/* webpackChunkName: "ResetPasswordSuccess" */ './components/ResetPasswordSuccess.vue')
+        },
+        {
+            path: "/register/success",
+            name: "rsuccess",
+            component: () => import(/* webpackChunkName: "RegisterSuccess" */ './components/RegisterSuccess.vue')
         }
     ]
 })
