@@ -26,6 +26,10 @@ export default {
   --dark-seablue: #0800a1;
   --green: #00a166;
   --dark-green: #006942;
+  --red: #fc0339;
+  --dark-red: #c4002b;
+  --light-red: #ff5252;
+  --selected: #f2f2f2;
 }
 
 * {
