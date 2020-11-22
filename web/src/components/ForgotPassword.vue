@@ -2,33 +2,23 @@
     <div class="container">
         <div class="form-side">
             <div class="form-side-content">
-                <p>Register now!</p>
+                <p>Send email verification!</p>
                 <lottie :options="defaultOptions" :width="500"/>
                 <img src="../assets/images/logo.png" alt="logo">
             </div>
         </div>
         <div class="form">
             <form>
-                <h3>Create your account to continue...</h3>
-                <input required type="text" placeholder="Your name">
+                <h3>Write your email to we send an reset password token...</h3>
                 <input required type="email" placeholder="Your email">
-                <div class="password-input">
-                    <input required :type="showOrHide" placeholder="Your password">
-                    <span v-if="hide" @click="handleHide">SHOW</span>
-                    <span v-else @click="handleHide">HIDE</span>
-                </div>
-                <input required type="password" placeholder="Confirm your password">
                 <button class="form-button">
                     <div class="button-shadow">
 
                     </div>
                     <div class="real-button">
-                        REGISTER
+                        SEND EMAIL
                     </div>
                 </button>
-                <div class="options">
-                    <span>I already have an account</span>
-                </div>
             </form>
         </div>
     </div>
@@ -39,24 +29,13 @@ import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/computer.json'
 
 export default {
-    name: "register",
+    name: "forgotpassword",
     components: {
         'lottie': Lottie
     },
     data() {
         return {
-            defaultOptions: { animationData, loop: true, autoplay: true },
-            hide: true
-        }
-    },
-    computed: {
-        showOrHide: function () {
-            return this.hide ? 'password' : 'text'
-        }
-    },
-    methods: {
-        handleHide: function () {
-            this.hide = !this.hide
+            defaultOptions: { animationData, loop: true, autoplay: true }
         }
     }
 }
@@ -162,7 +141,7 @@ export default {
     width: 100%;
     border-radius: 4px;
     height: 50px;
-    background-color: var(--purple);
+    background-color: var(--seablue);
     position: absolute;
     left: 0;
     bottom: 5px;
@@ -177,26 +156,11 @@ export default {
     width: 100%;
     border-radius: 4px;
     height: 50px;
-    background-color: var(--purple-dark);
+    background-color: var(--dark-seablue);
 }
 
 .form-button:hover > .real-button {
     bottom: 0;
-}
-
-.password-input {
-    width: 100%;
-    font-size: 10px;
-    font-weight: bolder;
-    position: relative;
-}
-
-.password-input span {
-    position: absolute;
-    right: 10px;
-    top: 20px;
-    cursor: pointer;
-    user-select: none;
 }
 
 @media (max-width: 900px) {

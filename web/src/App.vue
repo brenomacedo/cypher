@@ -22,6 +22,8 @@ export default {
   --purple-dark: #730078;
   --lightblue: #34cceb;
   --underwater: #1e6d7d;
+  --seablue: #0d00ff;
+  --dark-seablue: #0800a1;
 }
 
 * {
