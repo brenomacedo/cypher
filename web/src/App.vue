@@ -24,6 +24,8 @@ export default {
   --underwater: #1e6d7d;
   --seablue: #0d00ff;
   --dark-seablue: #0800a1;
+  --green: #00a166;
+  --dark-green: #006942;
 }
 
 * {

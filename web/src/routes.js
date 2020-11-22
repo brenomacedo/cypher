@@ -25,6 +25,11 @@ const router = new Router({
             path: "/forgot-password",
             name: "forgotpassword",
             component: () => import(/* webpackChunkName: "ForgotPassword" */ './components/ForgotPassword.vue')
+        },
+        {
+            path: "/reset-password",
+            name: "resetpassword",
+            component: () => import(/* webpackChunkName: "ResetPassword" */ './components/ResetPassword.vue')
         }
     ]
 })
