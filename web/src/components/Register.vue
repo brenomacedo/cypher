@@ -2,20 +2,22 @@
     <div class="container">
         <div class="form-side">
             <div class="form-side-content">
-                <p>Welcome to cypher!</p>
+                <p>Register now!</p>
                 <lottie :options="defaultOptions" :width="500"/>
                 <img src="../assets/images/logo.png" alt="logo">
             </div>
         </div>
         <div class="form">
             <form>
-                <h3>Sign in to continue...</h3>
-                <input type="text" placeholder="Your email">
+                <h3>Create your account to continue...</h3>
+                <input required type="text" placeholder="Your name">
+                <input required type="email" placeholder="Your email">
                 <div class="password-input">
-                    <input :type="showOrHide" placeholder="Your password">
+                    <input required :type="showOrHide" placeholder="Your password">
                     <span v-if="hide" @click="handleHide">SHOW</span>
                     <span v-else @click="handleHide">HIDE</span>
                 </div>
+                <input required type="password" placeholder="Confirm your password">
                 <button class="form-button">
                     <div class="button-shadow">
 
@@ -25,7 +27,7 @@
                     </div>
                 </button>
                 <div class="options">
-                    <span>I forgot my password</span>
+                    <span>I already have an account</span>
                 </div>
             </form>
         </div>
@@ -195,5 +197,23 @@ export default {
     top: 20px;
     cursor: pointer;
     user-select: none;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-side-content p {
+        width: 300px;
+        font-size: 30px;
+        text-align: center;
+    }
 }
 </style>

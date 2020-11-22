@@ -15,6 +15,11 @@ const router = new Router({
             path: "/login",
             name: "login",
             component: () => import(/* webpackChunkName: "Login" */ './components/Login.vue')
+        },
+        {
+            path: "/register",
+            name: "register",
+            component: () => import(/* wepackChunkName: "Register" */ './components/Register.vue')
         }
     ]
 })

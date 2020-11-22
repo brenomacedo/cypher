@@ -53,7 +53,9 @@ export default {
     padding: 40px;
     background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
+
 .info {
     display: flex;
     flex-direction: row;
@@ -159,6 +161,18 @@ export default {
 
     .description p {
         width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .description p {
+        width: 350px;
+    }
+}
+
+@media (max-width: 350px) {
+    .description p {
+        width: 310px;
     }
 }
 </style>

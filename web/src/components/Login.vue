@@ -10,9 +10,9 @@
         <div class="form">
             <form>
                 <h3>Sign in to continue...</h3>
-                <input type="text" placeholder="Your email">
+                <input required type="email" placeholder="Your email">
                 <div class="password-input">
-                    <input :type="showOrHide" placeholder="Your password">
+                    <input required :type="showOrHide" placeholder="Your password">
                     <span v-if="hide" @click="handleHide">SHOW</span>
                     <span v-else @click="handleHide">HIDE</span>
                 </div>
@@ -254,5 +254,23 @@ export default {
 
 .create-account strong {
     color: var(--underwater);
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-side-content p {
+        width: 300px;
+        font-size: 30px;
+        text-align: center;
+    }
 }
 </style>
