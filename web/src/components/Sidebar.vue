@@ -114,7 +114,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 150px;
+    min-height: 150px;
     border-top: 1px solid #ccc;
 }
 

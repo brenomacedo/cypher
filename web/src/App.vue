@@ -30,11 +30,20 @@ export default {
   --dark-red: #c4002b;
   --light-red: #ff5252;
   --selected: #f2f2f2;
+  --light-yellow: #ddf590;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--underwater);
 }
 </style>

@@ -4,16 +4,18 @@
         <div class="content">
 
         </div>
+        <leftsidebar />
     </div>
 </template>
 
 <script>
 import sidebar from '../components/Sidebar'
+import leftsidebar from '../components/LeftSideBar'
 
 export default {
     name: "profile",
     components: {
-        sidebar
+        sidebar, leftsidebar
     }
 }
 </script>
