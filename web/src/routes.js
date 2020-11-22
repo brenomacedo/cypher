@@ -42,7 +42,7 @@ const router = new Router({
             component: () => import(/* webpackChunkName: "RegisterSuccess" */ './pages/RegisterSuccess.vue')
         },
         {
-            path: "/error",
+            path: "*",
             name: "notfound",
             component: () => import(/* webpackChuknName: "NotFound" */ './pages/NotFound.vue')
         }
