@@ -19,6 +19,7 @@
             </div>
             <div class="posts">
                 <textpost />
+                <imagepost />
             </div>
         </div>
         <leftsidebar :windowW="windowW" />
@@ -30,12 +31,12 @@ import sidebar from '../components/Sidebar'
 import leftsidebar from '../components/LeftSideBar'
 import topcommunity from '../components/TopCommunity'
 import textpost from '../components/TextPost'
-
+import imagepost from '../components/ImagePost'
 
 export default {
     name: "profile",
     components: {
-        sidebar, leftsidebar, topcommunity, textpost
+        sidebar, leftsidebar, topcommunity, textpost, imagepost
     },
     data() {
         return {

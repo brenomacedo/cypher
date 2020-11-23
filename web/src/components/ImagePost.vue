@@ -1,21 +1,22 @@
 <template>
-    <div class="text-post-container">
-        <div class="text-post-author">
-            <div class="text-post-author-pic">
+    <div class="image-post-container">
+        <div class="image-post-author">
+            <div class="image-post-author-pic">
 
             </div>
-            <div class="text-post-author-name">
+            <div class="image-post-author-name">
                 Breno Macêdo de Brito
             </div>
-            <div class="text-post-created-at">
+            <div class="image-post-created-at">
                 ola
             </div>
         </div>
-        <div class="text-post-description">
+        <div class="image-post-description">
             Lorem ipsum dolor sit amet
         </div>
+        <div class="image-post-image"></div>
         <div class="options">
-            <font-awesome icon="thumbs-up" class="text-post-like"/>
+            <font-awesome icon="thumbs-up" class="image-post-like"/>
             <span>Like</span>
         </div>
     </div>
@@ -23,37 +24,37 @@
 
 <script>
 export default {
-    name: "textpost"
+    name: "imagepost"
 }
 </script>
 
 <style scoped>
-.text-post-container {
+.image-post-container {
     padding: 20px;
     border-radius: 20px;
     background-color: white;
     margin-top: 20px;
 }
 
-.text-post-author {
+.image-post-author {
     display: flex;
     align-items: center;
 }
 
-.text-post-author-pic {
+.image-post-author-pic {
     width: 35px;
     height: 35px;
     border-radius: 10px;
     background-color: var(--underwater);
 }
 
-.text-post-author-name {
+.image-post-author-name {
     color: var(--underwater);
     font-family: var(--roboto);
     margin-left: 10px;
 }
 
-.text-post-created-at {
+.image-post-created-at {
     flex: 1;
     text-align: end;
     font-family: var(--roboto);
@@ -61,13 +62,13 @@ export default {
     font-size: 12px;
 }
 
-.text-post-description {
+.image-post-description {
     margin-top: 15px;
     color: var(--underwater);
     font-family: var(--roboto);
 }
 
-.text-post-like {
+.image-post-like {
     color: var(--seablue);
     margin-right: 10px;
     transition: 0.3s;
@@ -91,7 +92,14 @@ export default {
     color: white;
 }
 
-.options:hover > .text-post-like {
+.options:hover > .image-post-like {
     color: white;
+}
+
+.image-post-image {
+    height: 500px;
+    background-image: url('../assets/images/rain.png');
+    margin: 20px 0;
+    border-radius: 20px;
 }
 </style>
