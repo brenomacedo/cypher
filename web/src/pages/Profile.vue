@@ -20,6 +20,7 @@
             <div class="posts">
                 <textpost />
                 <imagepost />
+                <videopost />
             </div>
         </div>
         <leftsidebar :windowW="windowW" />
@@ -32,11 +33,12 @@ import leftsidebar from '../components/LeftSideBar'
 import topcommunity from '../components/TopCommunity'
 import textpost from '../components/TextPost'
 import imagepost from '../components/ImagePost'
+import videopost from '../components/VideoPost'
 
 export default {
     name: "profile",
     components: {
-        sidebar, leftsidebar, topcommunity, textpost, imagepost
+        sidebar, leftsidebar, topcommunity, textpost, imagepost, videopost
     },
     data() {
         return {
