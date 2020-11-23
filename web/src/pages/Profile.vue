@@ -17,6 +17,9 @@
                     <topcommunity />
                 </div>
             </div>
+            <div class="posts">
+                <textpost />
+            </div>
         </div>
         <leftsidebar :windowW="windowW" />
     </div>
@@ -26,15 +29,15 @@
 import sidebar from '../components/Sidebar'
 import leftsidebar from '../components/LeftSideBar'
 import topcommunity from '../components/TopCommunity'
-import TopCommunity from '../components/TopCommunity.vue'
+import textpost from '../components/TextPost'
+
 
 export default {
     name: "profile",
     components: {
-        sidebar, leftsidebar, topcommunity
+        sidebar, leftsidebar, topcommunity, textpost
     },
     data() {
-        TopCommunity
         return {
             windowW: window.innerWidth
         }
@@ -59,7 +62,6 @@ export default {
     display: flex;
     flex-direction: column;
     width: calc(100% - 600px);
-    height: 8000px;
 }
 
 .add-friend {
@@ -102,6 +104,10 @@ export default {
     font-family: var(--roboto);
     font-size: 18px;
     margin-bottom: 20px;
+}
+
+.posts {
+    margin-top: 30px;
 }
 
 @media (max-width: 1200px) {

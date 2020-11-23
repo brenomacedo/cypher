@@ -2,11 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routes'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faBell, faUserFriends, faCog, faSearch, faUsers, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faBell, faUserFriends, faCog, faSearch, faUsers,
+  faTimes, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import 'aos/dist/aos.css'
 
-library.add(faHome, faBell, faUserFriends, faCog, faSearch, faUsers, faTimes)
+library.add(faHome, faBell, faUserFriends, faCog, faSearch, faUsers, faTimes, faThumbsUp)
 
 Vue.component('font-awesome', FontAwesomeIcon)
 
