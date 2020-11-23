@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-        <sidebar />
+        <sidebar :windowW="windowW" />
         <div class="content">
-
         </div>
-        <leftsidebar />
+        <leftsidebar :windowW="windowW" />
     </div>
 </template>
 
@@ -16,6 +15,16 @@ export default {
     name: "profile",
     components: {
         sidebar, leftsidebar
+    },
+    data() {
+        return {
+            windowW: window.innerWidth
+        }
+    },
+    created() {
+        window.addEventListener('resize', () => {
+            this.windowW = window.innerWidth
+        })
     }
 }
 </script>

@@ -1,14 +1,22 @@
 <template>
-    <div class="container">
-        <p>Your communities</p>
-        <div class="communities">
-            <communitie />
+    <div>
+        <div :class="{container: true, hided: !show}">
+            <div v-if="showClose" @click="toggleActive" class="close">
+                <font-awesome icon="times" color="black" />
+            </div>
+            <p>Your communities</p>
+            <div class="communities">
+                <communitie />
+            </div>
+            <div class="search-communities">
+                <input placeholder="Search an communitie" type="text">
+                <button>
+                    <font-awesome icon="search" color="white" class="search"/>
+                </button>
+            </div>
         </div>
-        <div class="search-communities">
-            <input placeholder="Search an communitie" type="text">
-            <button>
-                <font-awesome icon="search" color="white" class="search"/>
-            </button>
+        <div @click="toggleActive" v-if="!show" class="active-bar">
+            <font-awesome icon="users" color="black" />
         </div>
     </div>
 </template>
@@ -20,6 +28,27 @@ export default {
     name: "leftsidebar",
     components: {
         communitie
+    },
+    props: {
+        windowW: Number
+    },
+    data() {
+        return {
+            active: false
+        }
+    },
+    computed: {
+        show: function () {
+            return (this.windowW >= 1200) || this.active
+        },
+        showClose: function () {
+            return this.windowW <= 1200
+        }
+    },
+    methods: {
+        toggleActive: function () {
+            this.active = !this.active
+        }
     }
 }
 </script>
@@ -27,6 +56,7 @@ export default {
 <style scoped>
 .container {
     height: 100vh;
+    min-height: 540px;
     width: 300px;
     border-top-left-radius: 30px;
     background: var(--light-yellow);
@@ -34,6 +64,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    transition: right 0.3s;
+    right: 0;
 }
 
 .container p {
@@ -78,5 +111,38 @@ export default {
 
 .search-communities button:hover {
     background-color: var(--green);
+}
+
+.hided {
+    position: absolute;
+    right: -300px;
+}
+
+.active-bar {
+    width: 35px;
+    height: 35px;
+    background-color: var(--light-yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border-bottom: 3px solid var(--light-red);
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+    background-color: var(--red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border-bottom: 3px solid var(--light-red);
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 </style>

@@ -39,6 +39,10 @@ export default {
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
     width: 3px;
 }

@@ -1,43 +1,51 @@
 <template>
-    <div class="side-bar">
-        <div class="navigation">
-            <div class="home icon active">
-                <font-awesome icon="home" color="white" />
-            </div>
-            <div class="friends icon">
-                <div class="friends-ball"></div>
-                <font-awesome icon="user-friends" color="white" />
-            </div>
-            <div class="notifications icon">
-                <div class="notifications-ball"></div>
-                <font-awesome icon="bell" color="white" />
-            </div>
-        </div>
-        <div class="friend-list">
-            <p>Friend list</p>
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-            <friend />
-        </div>
-        <div class="profile">
-            <div class="profile-card">
-                <div class="profile-info">
-                    <div class="profile-pic"></div>
-                    <div class="profile-name">Breno Macêdo</div>
+    <div>
+        <div :class="{'side-bar': true, hided: !show}">
+            <div class="navigation">
+                <div v-if="showClose" @click="toggleActive" class="close">
+                    <font-awesome icon="times" color="black" />
                 </div>
-                <div class="config icon">
-                    <font-awesome icon="cog" color="white" class="config-icon" />
+                <div class="home icon active">
+                    <font-awesome icon="home" color="white" />
+                </div>
+                <div class="friends icon">
+                    <div class="friends-ball"></div>
+                    <font-awesome icon="user-friends" color="white" />
+                </div>
+                <div class="notifications icon">
+                    <div class="notifications-ball"></div>
+                    <font-awesome icon="bell" color="white" />
                 </div>
             </div>
+            <div class="friend-list">
+                <p>Friend list</p>
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+                <friend />
+            </div>
+            <div class="profile">
+                <div class="profile-card">
+                    <div class="profile-info">
+                        <div class="profile-pic"></div>
+                        <div class="profile-name">Breno Macêdo</div>
+                    </div>
+                    <div class="config icon">
+                        <font-awesome icon="cog" color="white" class="config-icon" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="toggleActive" v-if="!show" class="active-bar">
+            <font-awesome icon="users" color="black" />
         </div>
     </div>
 </template>
@@ -49,6 +57,27 @@ export default {
     name: "sidebar",
     components: {
         friend
+    },
+    props: {
+        windowW: Number
+    },
+    computed: {
+        show: function() {
+            return (this.windowW >= 1200) || this.active
+        },
+        showClose: function() {
+            return this.windowW <= 1200
+        }
+    },
+    methods: {
+        toggleActive: function() {
+            this.active = !this.active
+        }
+    },
+    data() {
+        return {
+            active: false
+        }
     }
 }
 </script>
@@ -56,6 +85,7 @@ export default {
 <style scoped>
 .side-bar {
     height: 100vh;
+    min-height: 540px;
     width: 300px;
     background-color: white;
     border-top-right-radius: 30px;
@@ -63,6 +93,9 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid #ccc;
+    left: 0;
+    position: relative;
+    transition: left 0.3s;
 }
 
 .navigation {
@@ -161,5 +194,38 @@ export default {
     font-family: var(--roboto);
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
+}
+
+.hided {
+    position: absolute;
+    left: -330px;
+}
+
+.active-bar {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border-bottom: 3px solid var(--lightblue);
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.close {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border-bottom: 3px solid var(--lightblue);
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 </style>
