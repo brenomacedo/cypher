@@ -66,6 +66,8 @@ export default {
     position: fixed;
     transition: right 0.3s;
     right: 0;
+    top: 0;
+    z-index: 1;
 }
 
 .container p {

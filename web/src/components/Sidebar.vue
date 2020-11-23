@@ -95,6 +95,7 @@ export default {
     left: 0;
     position: fixed;
     transition: left 0.3s;
+    z-index: 1;
 }
 
 .navigation {
