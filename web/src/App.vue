@@ -41,10 +41,12 @@ export default {
 
 body {
   overflow-x: hidden;
+  background-color: var(--form-bg);
 }
 
 ::-webkit-scrollbar {
     width: 3px;
+    height: 3px;
 }
 
 ::-webkit-scrollbar-thumb {

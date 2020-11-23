@@ -6,7 +6,7 @@
             </div>
             <p>Your communities</p>
             <div class="communities">
-                <communitie />
+                <community />
             </div>
             <div class="search-communities">
                 <input placeholder="Search an communitie" type="text">
@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import communitie from './Communitie'
+import community from './Community'
 
 export default {
     name: "leftsidebar",
     components: {
-        communitie
+        community
     },
     props: {
         windowW: Number
@@ -56,7 +56,6 @@ export default {
 <style scoped>
 .container {
     height: 100vh;
-    min-height: 540px;
     width: 300px;
     border-top-left-radius: 30px;
     background: var(--light-yellow);
@@ -64,7 +63,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    position: fixed;
     transition: right 0.3s;
     right: 0;
 }
@@ -128,7 +127,7 @@ export default {
     border-radius: 50px;
     border-bottom: 3px solid var(--light-red);
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
 }

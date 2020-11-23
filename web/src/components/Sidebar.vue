@@ -85,7 +85,6 @@ export default {
 <style scoped>
 .side-bar {
     height: 100vh;
-    min-height: 540px;
     width: 300px;
     background-color: white;
     border-top-right-radius: 30px;
@@ -94,7 +93,7 @@ export default {
     justify-content: space-between;
     border-right: 1px solid #ccc;
     left: 0;
-    position: relative;
+    position: fixed;
     transition: left 0.3s;
 }
 
@@ -181,7 +180,6 @@ export default {
 }
 
 .friend-list {
-    min-height: 300px;
     flex: 1;
     overflow: auto;
     display: flex;
@@ -211,7 +209,7 @@ export default {
     border-radius: 50px;
     border-bottom: 3px solid var(--lightblue);
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     left: 20px;
 }
