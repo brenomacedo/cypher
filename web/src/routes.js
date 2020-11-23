@@ -52,6 +52,11 @@ const router = new Router({
             component: () => import(/* webpackChunkName: "ViewProfile" */ './pages/ViewProfile.vue')
         },
         {
+            name: "viewcommunity",
+            path: "/community/view",
+            component: () => import (/* webpackChunkName: "ViewCommunity" */ './pages/ViewCommunity.vue')
+        },
+        {
             path: "*",
             name: "notfound",
             component: () => import(/* webpackChuknName: "NotFound" */ './pages/NotFound.vue')
