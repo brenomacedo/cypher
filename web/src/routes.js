@@ -67,6 +67,11 @@ const router = new Router({
             component: () => import(/* webpackChunkName: "SearchFriends" */ './pages/SearchFriends.vue')
         },
         {
+            name: "notifications",
+            path: "/notifications",
+            component: () => import(/* webpackChunkName: "Notifications" */ './pages/Notifications.vue')
+        },
+        {
             path: "*",
             name: "notfound",
             component: () => import(/* webpackChuknName: "NotFound" */ './pages/NotFound.vue')
