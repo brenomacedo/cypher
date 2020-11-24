@@ -18,12 +18,18 @@
             <font-awesome icon="thumbs-up" class="text-post-like"/>
             <span>Like</span>
         </div>
+        <comments />
     </div>
 </template>
 
 <script>
+import comments from '../components/Comments'
+
 export default {
-    name: "textpost"
+    name: "textpost",
+    components: {
+        comments
+    }
 }
 </script>
 

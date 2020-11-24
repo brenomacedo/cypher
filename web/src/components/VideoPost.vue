@@ -23,12 +23,18 @@
             <font-awesome icon="thumbs-up" class="video-post-like" />
             <span>Like</span>
         </div>
+        <comments />
     </div>
 </template>
 
 <script>
+import comments from '../components/Comments'
+
 export default {
-    name: "videopost"
+    name: "videopost",
+    components: {
+        comments
+    }
 }
 </script>
 
