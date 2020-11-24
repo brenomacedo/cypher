@@ -8,6 +8,10 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     description: {
         type: DataTypes.STRING,
         allowNull: true
@@ -25,4 +29,4 @@ User.init({
     tableName: "user"
 })
 
-export default User
+module.exports = User
