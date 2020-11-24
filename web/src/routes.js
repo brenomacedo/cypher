@@ -62,6 +62,11 @@ const router = new Router({
             component: () => import(/* webpackChunkName: "EditProfile" */ './pages/EditProfile.vue')
         },
         {
+            name: "searchfriends",
+            path: "/search-friends",
+            component: () => import(/* webpackChunkName: "SearchFriends" */ './pages/SearchFriends.vue')
+        },
+        {
             path: "*",
             name: "notfound",
             component: () => import(/* webpackChuknName: "NotFound" */ './pages/NotFound.vue')
