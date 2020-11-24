@@ -115,7 +115,7 @@ export default {
 }
 
 .hided {
-    position: absolute;
+    position: fixed;
     right: -300px;
 }
 

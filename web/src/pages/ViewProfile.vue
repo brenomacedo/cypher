@@ -63,14 +63,17 @@ export default {
 }
 
 .viewprofile-pic {
-    width: 80px;
-    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
+    min-width: 80px;
+    min-height: 80px;
     border-radius: 50px;
     background-color: red;
 }
 
 .viewprofile-name {
     color: white;
+    -webkit-text-stroke: 1px black;
     font-family: var(--roboto);
     font-size: 25px;
     margin-left: 10px;
