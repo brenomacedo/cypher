@@ -9,7 +9,6 @@
                     <font-awesome icon="home" color="white" />
                 </div>
                 <div class="friends icon">
-                    <div class="friends-ball"></div>
                     <font-awesome icon="user-friends" color="white" />
                 </div>
                 <div class="notifications icon">
@@ -120,16 +119,6 @@ export default {
 .active {
     padding-bottom: 3px;
     border-bottom: 3px solid var(--red);
-}
-
-.friends-ball {
-    position: absolute;
-    top: -2px;
-    right: -3px;
-    width: 7px;
-    height: 7px;
-    background-color: var(--red);
-    border-radius: 3px;
 }
 
 .notifications-ball {
