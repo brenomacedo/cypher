@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return await queryInterface.createTable('post', {
+    return queryInterface.createTable('post', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -27,11 +27,19 @@ module.exports = {
         references: { model: 'user', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false
       }
     })
   },
 
   down: async (queryInterface, Sequelize) => {
-    return await queryInterface.dropTable('post')
+    return queryInterface.dropTable('post')
   }
 };

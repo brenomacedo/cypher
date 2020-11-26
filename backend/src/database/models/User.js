@@ -5,6 +5,12 @@ const { v4: uuid } = require('uuid')
 class User extends Model {}
 
 User.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
     uuid: {
         type: DataTypes.STRING,
         allowNull: true

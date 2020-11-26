@@ -30,7 +30,7 @@ Post.init({
     tableName: 'post'
 })
 
-Post.belongsTo(User)
+Post.belongsTo(User, { foreignKey: 'userId', as: 'user' })
 User.hasMany(Post, { foreignKey: 'userId', as: 'post' })
 
 module.exports = Post
