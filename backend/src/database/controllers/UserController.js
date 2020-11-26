@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const Yup = require('yup')
-const { RenderUser } = require('../views/UserView')
-const { Sequelize, Op } = require('sequelize')
+const { RenderUser, RenderUsers } = require('../views/UserView')
+const { Op } = require('sequelize')
 
 module.exports = {
     createOrLogin(req, res) {
@@ -63,13 +63,25 @@ module.exports = {
                     name: {
                         [Op.like]: `%${search}%`
                     },
-                    uuid: `7e34fbb7-9573-4386-983b-d1d871bd11ce`
+                    uuid: search
                 }
             }
-        }).then(user => {
-            return res.status(200).json(user)
+        }).then(users => {
+            return res.status(200).json(RenderUsers(users))
         }).catch(err => {
             return res.status(500).json(err)
+        })
+    },
+
+    viewUser(req, res) {
+        const { uuid } = req.params.id
+
+        User.findOne({
+            where: { uuid }
+        }).then(user => {
+            return res.status(200).json(RenderUser(user))
+        }).catch(err => {
+            return res.status(500).json({ msg: "An error ocurred", errors: ["Unknown error"] })
         })
     }
 }
