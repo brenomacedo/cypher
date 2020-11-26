@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('comment', {
+    return queryInterface.createTable('response', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -13,10 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      postId: {
+      commentId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'post', key: 'id' },
+        references: { model: 'comment', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
@@ -32,6 +32,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('comment')
+    return queryInterface.dropTable('response')
   }
 };
