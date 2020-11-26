@@ -37,7 +37,7 @@ module.exports = {
 
     getPosts(req, res) {
         Post.findAll({
-            include: ['user']
+            include: ['user', 'comment']
         }).then(resp => {
             return res.status(200).json(resp)
         }).catch(err => {

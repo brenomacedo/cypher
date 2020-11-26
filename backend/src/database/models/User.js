@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../database')
 const { v4: uuid } = require('uuid')
-
 class User extends Model {}
 
 User.init({
@@ -39,6 +38,7 @@ User.init({
     sequelize,
     tableName: "user"
 })
+
 
 User.beforeCreate(user => {
     user.uuid = uuid()

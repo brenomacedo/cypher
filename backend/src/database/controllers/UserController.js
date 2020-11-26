@@ -50,7 +50,7 @@ module.exports = {
         }).then(user => {
             return res.status(201).json(RenderUser(user))
         }).catch(err => {
-            return res.status(409).json({ msg: 'An error ocurred!', errors: err })
+            return res.status(500).json({ msg: 'An error ocurred!', errors: ['Unknown error'] })
         })
     },
 
@@ -65,7 +65,8 @@ module.exports = {
                     },
                     uuid: search
                 }
-            }
+            },
+            include: ['post']
         }).then(users => {
             return res.status(200).json(RenderUsers(users))
         }).catch(err => {
@@ -77,7 +78,7 @@ module.exports = {
         const { uuid } = req.params.id
 
         User.findOne({
-            where: { uuid }
+            where: { uuid },
         }).then(user => {
             return res.status(200).json(RenderUser(user))
         }).catch(err => {

@@ -5,6 +5,12 @@ const sequelize = require('../database')
 class Post extends Model {}
 
 Post.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
     type: {
         type: DataTypes.STRING,
         allowNull: false
@@ -30,7 +36,7 @@ Post.init({
     tableName: 'post'
 })
 
-Post.belongsTo(User, { foreignKey: 'userId', as: 'user' })
 User.hasMany(Post, { foreignKey: 'userId', as: 'post' })
+Post.belongsTo(User, { foreignKey: 'userId', as: 'user' })
 
 module.exports = Post
