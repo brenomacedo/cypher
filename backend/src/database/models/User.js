@@ -1,9 +1,14 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../database')
+const { v4: uuid } = require('uuid')
 
 class User extends Model {}
 
 User.init({
+    uuid: {
+        type: DataTypes.UUIDV4,
+        allowNull: true
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -27,6 +32,10 @@ User.init({
 }, {
     sequelize,
     tableName: "user"
+})
+
+User.beforeCreate(user => {
+    user.uuid = uuid()
 })
 
 module.exports = User

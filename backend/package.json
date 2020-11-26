@@ -10,6 +10,7 @@
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
+    "uuid": "^8.3.1",
     "yup": "^0.31.0"
   },
   "devDependencies": {
@@ -19,6 +20,8 @@
   "scripts": {
     "dev": "nodemon src/index",
     "start": "node src/index",
-    "migration:generate": "sequelize-cli migration:generate"
+    "migration:generate": "sequelize-cli migration:generate",
+    "migration:run": "sequelize-cli db:migrate",
+    "migration:undo": "sequelize-cli db:migrate:undo"
   }
 }
