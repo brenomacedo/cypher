@@ -1,5 +1,7 @@
 const User = require('../models/User')
 const Yup = require('yup')
+const { RenderUser } = require('../views/UserView')
+const { Sequelize, Op } = require('sequelize')
 
 module.exports = {
     createOrLogin(req, res) {
@@ -27,7 +29,7 @@ module.exports = {
             // verify authentication
 
             if(user) {
-                return res.status(200).json(user) 
+                return res.status(200).json(RenderUser(user)) 
             }
         }).catch(() => {
             return res.status(500).json({ msg: 'An error ocurred', errors: ['Unknown error'] })
@@ -46,9 +48,28 @@ module.exports = {
         User.create({
             name, email, avatar, avatar, banner, uuid: '123'
         }).then(user => {
-            return res.status(201).json(user)
+            return res.status(201).json(RenderUser(user))
         }).catch(err => {
             return res.status(409).json({ msg: 'An error ocurred!', errors: err })
+        })
+    },
+
+    searchUser(req, res) {
+        const { search } = req.query
+
+        User.findAll({
+            where: {
+                [Op.or]: {
+                    name: {
+                        [Op.like]: `%${search}%`
+                    },
+                    uuid: `7e34fbb7-9573-4386-983b-d1d871bd11ce`
+                }
+            }
+        }).then(user => {
+            return res.status(200).json(user)
+        }).catch(err => {
+            return res.status(500).json(err)
         })
     }
 }

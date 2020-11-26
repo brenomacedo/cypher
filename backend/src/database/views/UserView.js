@@ -1,4 +1,4 @@
-export const RenderUser = (user) => {
+exports.RenderUser = (user) => {
     return {
         id: user.id,
         uuid: user.uuid,
