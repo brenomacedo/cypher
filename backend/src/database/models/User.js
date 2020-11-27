@@ -39,6 +39,7 @@ User.init({
     tableName: "user"
 })
 
+User.belongsToMany(User, { through: 'User_To_User', as: 'friends', foreignKey: 'friendId', otherKey: 'UserId' })
 
 User.beforeCreate(user => {
     user.uuid = uuid()
