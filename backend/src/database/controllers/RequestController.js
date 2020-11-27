@@ -1,5 +1,6 @@
 const Yup = require('yup')
 const Request = require('../models/Request')
+const User = require('../models/User')
 
 module.exports = {
     createRequest(req, res) {
@@ -32,7 +33,28 @@ module.exports = {
             }).then(request => {
                 if(request) {
                     // CREATE FRIENDS
-                    return res.status(409).json({ msg: "make friends!" })
+                    User.findOne({
+                        where: {
+                            id: 2
+                        }
+                    }).then(user1 => {
+                        User.findOne({
+                            where: {
+                                id: 1
+                            }
+                        }).then(user2 => {
+                            user2.addFriend(user1).then(() => {
+                                user1.addFriend(user2).then(() => {
+                                    Request.create(data).then(() => {
+                                        return res.status(201).json({ msg: "Friendship made!" })
+                                    }).catch(err => {
+                                        return res.status(409).json({ msg: "An error ocurred", errors: ['Unknown Error!'] })
+                                    })
+                                })
+                            })
+                        }).catch(err => { return res.json({ msg: err }) })
+                    }).catch(err => { return res.json({ msg: "erro 3" }) })
+                    return
                 }
     
                 Request.create(data).then(request => {
