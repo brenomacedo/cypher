@@ -21,7 +21,7 @@ module.exports = {
         Response.create(data).then(response => {
             return res.status(201).json(response)
         }).catch(err => {
-            return res.status(404).json({ msg: 'An error ocurred', errors: err })
+            return res.status(404).json({ msg: 'An error ocurred', errors: ['User not found'] })
         })
     }
 }

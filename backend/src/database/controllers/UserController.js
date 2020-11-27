@@ -66,9 +66,9 @@ module.exports = {
                     uuid: search
                 }
             },
-            include: ['post']
+            include: ['post', 'request']
         }).then(users => {
-            return res.status(200).json(RenderUsers(users))
+            return res.status(200).json(users)
         }).catch(err => {
             return res.status(500).json(err)
         })

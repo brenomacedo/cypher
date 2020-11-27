@@ -37,11 +37,11 @@ module.exports = {
 
     getPosts(req, res) {
         Post.findAll({
-            include: [{all: true, nested: true}]
+            include: [{ association: 'user' }, { association: 'comment', include: 'response' }]
         }).then(resp => {
             return res.status(200).json(resp)
         }).catch(err => {
-            return res.status(500).json({ msg: "An error ocurred", errors: ['Unknown error'] })
+            return res.status(500).json({ msg: "An error ocurred", errors: err })
         })
     }
 }
