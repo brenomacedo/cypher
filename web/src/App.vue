@@ -31,6 +31,8 @@ export default {
   --light-red: #ff5252;
   --selected: #f2f2f2;
   --light-yellow: #ddf590;
+  --disabled: #bfbfbf;
+  --shadow-disabled: #8f8f8f;
 }
 
 * {

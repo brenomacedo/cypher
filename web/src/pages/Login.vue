@@ -7,20 +7,20 @@
                 <img src="../assets/images/logo.png" alt="logo">
             </div>
         </div>
-        <div class="form">
+        <div @submit="loginWithEmail" class="form">
             <form>
                 <h3>Sign in to continue...</h3>
-                <input required type="email" placeholder="Your email">
+                <input v-model="email" required type="email" placeholder="Your email">
                 <div class="password-input">
-                    <input required :type="showOrHide" placeholder="Your password">
+                    <input v-model="password" required :type="showOrHide" placeholder="Your password">
                     <span v-if="hide" @click="handleHide">SHOW</span>
                     <span v-else @click="handleHide">HIDE</span>
                 </div>
-                <button class="form-button">
-                    <div class="button-shadow">
+                <button class="form-button" :disabled="!activeForm">
+                    <div :class="{ 'button-shadow': true, 'shadow-disabled': !activeForm }">
 
                     </div>
-                    <div class="real-button">
+                    <div :class="{ 'real-button': true, disabled: !activeForm }">
                         LOGIN
                     </div>
                 </button>
@@ -30,11 +30,11 @@
                 <br>
                 <p>OR</p>
                 <br>
-                <button class="google-login">
-                    <div class="google-real-button">
+                <button @click="loginWithGoogle" type="button" class="google-login">
+                    <div :class="{ 'google-real-button': true, disabled: !activeForm }">
                         <img src="../assets/images/google.png" alt=""> LOGIN WITH GOOGLE
                     </div>
-                    <div class="google-shadow-button">
+                    <div :class="{ 'google-shadow-button': true, 'shadow-disabled': !activeForm }">
 
                     </div>
                 </button>
@@ -42,6 +42,7 @@
                 <br>
                 <div class="create-account">
                     <p>Dont have an account? <strong>Create one!</strong></p>
+                    {{ activeForm }}
                 </div>
             </form>
         </div>
@@ -51,6 +52,7 @@
 <script>
 import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/computer.json'
+import { googleLogin, emailLogin } from '../firebase'
 
 export default {
     name: "login",
@@ -60,7 +62,10 @@ export default {
     data() {
         return {
             defaultOptions: { animationData, loop: true, autoplay: true },
-            hide: true
+            hide: true,
+            email: '',
+            password: '',
+            activeForm: true
         }
     },
     computed: {
@@ -71,7 +76,36 @@ export default {
     methods: {
         handleHide: function () {
             this.hide = !this.hide
-        }
+        },
+        loginWithEmail: async function ($event) {
+            if(!this.activeForm) {
+                return
+            }
+
+            $event.preventDefault()
+            this.activeForm = false
+            const response = await this.emailLogin(this.email, this.password)
+            if(response.authenticated) {
+                //
+            } else {
+                this.activeForm = true
+            }
+        },
+        loginWithGoogle: async function() {
+            if(!this.activeForm) {
+                return
+            }
+
+            this.activeForm = false
+            const response = await this.googleLogin()
+            if(response.authenticated) {
+                //
+            } else {
+                this.activeForm = true
+            }
+        },
+        googleLogin,
+        emailLogin
     }
 }
 </script>
@@ -170,6 +204,7 @@ export default {
     cursor: pointer;
     margin-top: 5px;
     position: relative;
+    outline: none;
 }
 
 .real-button {
@@ -220,6 +255,7 @@ export default {
     margin-top: 5px;
     position: relative;
     cursor: pointer;
+    outline: none;
 }
 
 .google-shadow-button {
@@ -254,6 +290,17 @@ export default {
 
 .create-account strong {
     color: var(--underwater);
+    cursor: pointer;
+}
+
+.disabled {
+    background: var(--disabled);
+    cursor: initial;
+}
+
+.shadow-disabled {
+    background: var(--shadow-disabled);
+    cursor: initial;
 }
 
 @media (max-width: 900px) {

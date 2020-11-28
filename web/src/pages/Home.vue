@@ -5,8 +5,8 @@
                 <img src="../assets/images/logo-sm.png" alt="">
             </div>
             <div class="buttons">
-                <button class="login">LOGIN</button>
-                <button class="sign-up">SIGN UP</button>
+                <button @click="toLogin" class="login">LOGIN</button>
+                <button @click="toSignUp" class="sign-up">SIGN UP</button>
             </div>
         </div>
         <div class="info" data-aos="zoom-in">
@@ -40,6 +40,14 @@ export default {
     data() {
         return {
             defaultOptions: {animationData, loop: true, autoplay: true}
+        }
+    },
+    methods: {
+        toSignUp: function() {
+            this.$router.push('/register')
+        },
+        toLogin: function() {
+            this.$router.push('/login')
         }
     }
 }
