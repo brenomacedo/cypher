@@ -5,7 +5,7 @@
         </div>
         <h1>Success!</h1>
         <p>Your account has been created!</p>
-        <button class="back-button">
+        <button @click="toProfile" class="back-button">
             <div class="shadow-button">
 
             </div>
@@ -28,6 +28,11 @@ export default {
     data() {
         return {
             defaultOptions: { autoplay: true, loop: true, animationData }
+        }
+    },
+    methods: {
+        toProfile: function () {
+            this.$router.push('/profile')
         }
     }
 }
@@ -65,6 +70,7 @@ export default {
     background-color: transparent;
     position: relative;
     cursor: pointer;
+    outline: none;
 }
 
 .shadow-button {

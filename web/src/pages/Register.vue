@@ -8,26 +8,25 @@
             </div>
         </div>
         <div class="form">
-            <form>
+            <form @submit="registerWithEmail">
                 <h3>Create your account to continue...</h3>
-                <input required type="text" placeholder="Your name">
-                <input required type="email" placeholder="Your email">
+                <input v-model="email" required type="email" placeholder="Your email">
                 <div class="password-input">
-                    <input required :type="showOrHide" placeholder="Your password">
+                    <input v-model="password" required :type="showOrHide" placeholder="Your password">
                     <span v-if="hide" @click="handleHide">SHOW</span>
                     <span v-else @click="handleHide">HIDE</span>
                 </div>
-                <input required type="password" placeholder="Confirm your password">
-                <button class="form-button">
-                    <div class="button-shadow">
+                <input v-model="confirmPassword" required type="password" placeholder="Confirm your password">
+                <button class="form-button" :disabled="!activeForm">
+                    <div :class="{ 'button-shadow': true, 'shadow-disabled': !activeForm }">
 
                     </div>
-                    <div class="real-button">
+                    <div :class="{ 'real-button': true, disabled: !activeForm }">
                         REGISTER
                     </div>
                 </button>
                 <div class="options">
-                    <span>I already have an account</span>
+                    <span @click="toLogin">I already have an account</span>
                 </div>
             </form>
         </div>
@@ -37,6 +36,7 @@
 <script>
 import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/computer.json'
+import { emailRegister } from '../firebase'
 
 export default {
     name: "register",
@@ -46,17 +46,39 @@ export default {
     data() {
         return {
             defaultOptions: { animationData, loop: true, autoplay: true },
-            hide: true
-        }
-    },
-    computed: {
-        showOrHide: function () {
-            return this.hide ? 'password' : 'text'
+            hide: true,
+            activeForm: true,
+            email: '',
+            password: '',
+            confirmPassword: ''
         }
     },
     methods: {
         handleHide: function () {
             this.hide = !this.hide
+        },
+        registerWithEmail: async function ($event) {
+            $event.preventDefault()
+
+            if(this.confirmPassword !== this.password) {
+                return alert('erro')
+            }
+            this.activeForm = false
+            const response = await this.emailRegister(this.email, this.password)
+            if(response.registered) {
+                this.$router.push('/register/success')
+            } else {
+                this.activeForm = true
+            }
+        },
+        toLogin: function () {
+            this.$router.push('/login')
+        },
+        emailRegister
+    },
+    computed: {
+        showOrHide: function () {
+            return this.hide ? 'password' : 'text'
         }
     }
 }
@@ -197,6 +219,16 @@ export default {
     top: 20px;
     cursor: pointer;
     user-select: none;
+}
+
+.disabled {
+    background: var(--disabled);
+    cursor: initial;
+}
+
+.shadow-disabled {
+    background: var(--shadow-disabled);
+    cursor: initial;
 }
 
 @media (max-width: 900px) {

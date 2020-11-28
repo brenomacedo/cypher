@@ -65,3 +65,17 @@ export const emailLogin = async (email, password) => {
         }
     }
 }
+
+export const emailRegister = async (email, password) => {
+    try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+
+        return {
+            registered: true
+        }
+    } catch {
+        return {
+            registered: false
+        }
+    }
+}

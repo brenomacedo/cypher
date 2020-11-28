@@ -25,7 +25,7 @@
                     </div>
                 </button>
                 <div class="options">
-                    <span>I forgot my password</span>
+                    <span @click="toForgotPassword">I forgot my password</span>
                 </div>
                 <br>
                 <p>OR</p>
@@ -41,8 +41,7 @@
                 <br>
                 <br>
                 <div class="create-account">
-                    <p>Dont have an account? <strong>Create one!</strong></p>
-                    {{ activeForm }}
+                    <p>Dont have an account? <strong @click="toRegister">Create one!</strong></p>
                 </div>
             </form>
         </div>
@@ -103,6 +102,18 @@ export default {
             } else {
                 this.activeForm = true
             }
+        },
+        toRegister: function() {
+            if(!this.activeForm) {
+                return
+            }
+            this.$router.push('/register')
+        },
+        toForgotPassword: function () {
+            if(!this.activeForm) {
+                return
+            }
+            this.$router.push('/forgot-password')
         },
         googleLogin,
         emailLogin
