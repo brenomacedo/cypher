@@ -25,13 +25,7 @@ export const googleLogin = async () => {
         const response = await firebase.auth().signInWithPopup(provider)
         const token = await response.user.getIdToken()
         const name = response.user.email.split('@')[0]
-        console.log({
-            authenticated: true,
-            token: token,
-            name,
-            email: response.user.email,
-            avatar: response.user.photoURL
-        })
+        console.log(token)
 
         return {
             authenticated: true,

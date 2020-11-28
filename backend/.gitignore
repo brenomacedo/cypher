@@ -1,3 +1,5 @@
 node_modules
 *.log
 src/database/config/index.js
+src/firebase/adminsdk.json
+src/firebase/index.js
