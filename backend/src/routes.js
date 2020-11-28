@@ -6,7 +6,7 @@ const ResponseController = require('./database/controllers/ResponseController')
 const UserController = require('./database/controllers/UserController')
 const auth = require('./database/middlewares/auth')
 
-router.post('/user', UserController.createOrLogin)
+router.post('/user', auth, UserController.createOrLogin)
 router.get('/user/search', UserController.searchUser)
 router.post('/post', PostController.createPost)
 router.get('/post', PostController.getPosts)

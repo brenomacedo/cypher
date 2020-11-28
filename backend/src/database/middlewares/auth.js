@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
     admin.auth().verifyIdToken(token).then(resp => {
 
         req.body.email = resp.email
+        req.body.uuid = resp.uid
 
         return next()
     }).catch(err => {

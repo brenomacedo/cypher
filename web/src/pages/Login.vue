@@ -52,6 +52,7 @@
 import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/computer.json'
 import { googleLogin, emailLogin } from '../firebase'
+import api from '../api'
 
 export default {
     name: "login",
@@ -85,7 +86,11 @@ export default {
             this.activeForm = false
             const response = await this.emailLogin(this.email, this.password)
             if(response.authenticated) {
-                //
+                await api.post('/user', {}, {
+                    headers: {
+                        authorization: response.token
+                    }
+                })
             } else {
                 this.activeForm = true
             }
@@ -98,7 +103,11 @@ export default {
             this.activeForm = false
             const response = await this.googleLogin()
             if(response.authenticated) {
-                //
+                await api.post('/user', {}, {
+                    headers: {
+                        authorization: response.token
+                    }
+                })
             } else {
                 this.activeForm = true
             }

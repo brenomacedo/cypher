@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../database')
-const { v4: uuid } = require('uuid')
 class User extends Model {}
 
 User.init({
@@ -40,9 +39,5 @@ User.init({
 })
 
 User.belongsToMany(User, { through: 'User_To_User', as: 'friends', foreignKey: 'friendId', otherKey: 'UserId' })
-
-User.beforeCreate(user => {
-    user.uuid = uuid()
-})
 
 module.exports = User
