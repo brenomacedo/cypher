@@ -110,7 +110,17 @@ export default {
                         authorization: response.token
                     }
                 })
-                console.log(user)
+
+                const { id, uuid, name, description, avatar, banner, createdAt, updatedAt } = user.data
+                
+                this.setUser({
+                    id, uuid, name, description, avatar, banner,
+                    createdAt, updatedAt, token: response.token
+                })
+
+                this.setIsAuth(true)
+
+                this.$router.push('/profile')
             } else {
                 this.activeForm = true
             }
@@ -127,7 +137,7 @@ export default {
             }
             this.$router.push('/forgot-password')
         },
-        ...mapActions(['setIsAuth']),
+        ...mapActions(['setUser' ,'setIsAuth']),
         googleLogin,
         emailLogin
     }

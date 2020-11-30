@@ -39,6 +39,8 @@
                     </div>
                     <div class="config icon">
                         <font-awesome icon="cog" color="white" class="config-icon" />
+                        <font-awesome @click="logout" icon="door-open"
+                        color="white" class="config-icon" />
                     </div>
                 </div>
             </div>
@@ -50,8 +52,9 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import friend from './Friend'
-import { mapGetters } from 'vuex'
+import firebase from '../firebase'
 
 export default {
     name: "sidebar",
@@ -73,7 +76,29 @@ export default {
     methods: {
         toggleActive: function() {
             this.active = !this.active
-        }
+        },
+        logout: function () {
+            firebase.auth().signOut().then(() => {
+                this.setUser({
+                    id: undefined,
+                    uuid: undefined,
+                    name: undefined,
+                    avatar: undefined,
+                    banner: undefined,
+                    description: undefined,
+                    createdAt: undefined,
+                    updatedAt: undefined,
+                    token: undefined
+                })
+
+                this.setIsAuth(false)
+
+                this.$router.push('/login')
+            }).catch(() => {
+                alert('erro ao deslogar')
+            })
+        },
+        ...mapActions(['setUser', 'setIsAuth'])
     },
     data() {
         return {
@@ -217,5 +242,9 @@ export default {
     border-bottom: 3px solid var(--lightblue);
     cursor: pointer;
     margin-bottom: 10px;
+}
+
+.config-icon {
+    margin-left: 10px;
 }
 </style>
