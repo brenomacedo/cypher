@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faBell, faUserFriends, faCog, faSearch, faUsers,
   faTimes, faThumbsUp, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import store from './store'
 import 'aos/dist/aos.css'
 
 library.add(faHome, faBell, faUserFriends, faCog, faSearch, faUsers, faTimes, faThumbsUp, faPlay, faPlus)
@@ -14,6 +15,7 @@ Vue.component('font-awesome', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')

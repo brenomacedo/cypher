@@ -34,8 +34,8 @@
             <div class="profile">
                 <div class="profile-card">
                     <div class="profile-info">
-                        <div class="profile-pic"></div>
-                        <div class="profile-name">Breno Macêdo</div>
+                        <img :src="user.avatar" class="profile-pic" />
+                        <div class="profile-name">{{ user.name }}</div>
                     </div>
                     <div class="config icon">
                         <font-awesome icon="cog" color="white" class="config-icon" />
@@ -51,6 +51,7 @@
 
 <script>
 import friend from './Friend'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "sidebar",
@@ -66,7 +67,8 @@ export default {
         },
         showClose: function() {
             return this.windowW <= 1200
-        }
+        },
+        ...mapGetters(['user'])
     },
     methods: {
         toggleActive: function() {

@@ -4,27 +4,11 @@ import 'firebase/auth'
 
 firebase.initializeApp(firebaseConfig)
 
-export const isAuth = () => {
-    firebase.auth().onAuthStateChanged(user => {
-        if(user) {
-            return {
-                exists: true,
-                user
-            }
-        }
-
-        return {
-            exists: false
-        }
-    })
-}
-
 export const googleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider()
     try {
         const response = await firebase.auth().signInWithPopup(provider)
         const token = await response.user.getIdToken()
-        console.log(token)
 
         return {
             authenticated: true,
@@ -69,3 +53,5 @@ export const emailRegister = async (email, password) => {
         }
     }
 }
+
+export default firebase

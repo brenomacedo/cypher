@@ -52,6 +52,7 @@
 import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/computer.json'
 import { googleLogin, emailLogin } from '../firebase'
+import { mapGetters, mapActions } from 'vuex'
 import api from '../api'
 
 export default {
@@ -71,7 +72,8 @@ export default {
     computed: {
         showOrHide: function () {
             return this.hide ? 'password' : 'text'
-        }
+        },
+        ...mapGetters(['isAuth', 'user'])
     },
     methods: {
         handleHide: function () {
@@ -103,11 +105,12 @@ export default {
             this.activeForm = false
             const response = await this.googleLogin()
             if(response.authenticated) {
-                await api.post('/user', {}, {
+                const user = await api.post('/user', {}, {
                     headers: {
                         authorization: response.token
                     }
                 })
+                console.log(user)
             } else {
                 this.activeForm = true
             }
@@ -124,6 +127,7 @@ export default {
             }
             this.$router.push('/forgot-password')
         },
+        ...mapActions(['setIsAuth']),
         googleLogin,
         emailLogin
     }

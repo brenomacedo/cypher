@@ -1,14 +1,21 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view v-if="isAuth !== undefined" />
+    <loading v-else/>
   </div>
 </template>
 
 <script>
+import loading from './components/Loading'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
+  computed: {
+    ...mapGetters(['isAuth'])
+  },
   components: {
+    loading
   }
 }
 </script>

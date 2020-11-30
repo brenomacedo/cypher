@@ -3,8 +3,7 @@
         <sidebar :windowW="windowW" />
         <div class="content">
             <div class="add-friend">
-                <font-awesome icon="user-friends" class="add-friend-icon" />
-                <p>Add friend</p>
+                <font-awesome icon="user-friends" class="add-friend-icon" />Add friends
             </div>
             <div class="top-communities">
                 <p>Top communities!</p>
@@ -34,6 +33,7 @@ import topcommunity from '../components/TopCommunity'
 import textpost from '../components/TextPost'
 import imagepost from '../components/ImagePost'
 import videopost from '../components/VideoPost'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "profile",
@@ -49,6 +49,14 @@ export default {
         window.addEventListener('resize', () => {
             this.windowW = window.innerWidth
         })
+    },
+    computed: {
+        ...mapGetters(['user'])
+    },
+    methods: {
+        printUser: function() {
+            console.log(this.user)
+        }
     }
 }
 </script>
