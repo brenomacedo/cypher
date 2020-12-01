@@ -1,6 +1,7 @@
 const Yup = require('yup')
 const Request = require('../models/Request')
 const User = require('../models/User')
+const { RenderRequest } = require('../views/RequestView')
 
 module.exports = {
     createRequest(req, res) {
@@ -32,15 +33,15 @@ module.exports = {
                 }
             }).then(request => {
                 if(request) {
-                    // CREATE FRIENDS
+                    
                     User.findOne({
                         where: {
-                            id: 2
+                            id: from
                         }
                     }).then(user1 => {
                         User.findOne({
                             where: {
-                                id: 1
+                                id: to
                             }
                         }).then(user2 => {
                             user2.addFriend(user1).then(() => {
@@ -50,15 +51,15 @@ module.exports = {
                                     }).catch(err => {
                                         return res.status(409).json({ msg: "An error ocurred", errors: ['Unknown Error!'] })
                                     })
-                                })
+                                }).catch(err => res.status(409).json({ msg: "An error ocurred", errors: ['Unknown Error!'] }))
                             })
-                        }).catch(err => { return res.json({ msg: err }) })
-                    }).catch(err => { return res.json({ msg: "erro 3" }) })
+                        }).catch(err => { return res.json({ msg: "An error ocurred", errors: ['Unknown Error!'] }) })
+                    }).catch(err => { return res.json({ msg: "An error ocurred", errors: ['Unknown Error!'] }) })
                     return
                 }
     
                 Request.create(data).then(request => {
-                    return res.status(201).json(request)
+                    return res.status(201).json(RenderRequest(request))
                 }).catch(err => {
                     return res.status(409).json({ msg: "An error ocurred", errors: ['Unknown Error!'] })
                 })

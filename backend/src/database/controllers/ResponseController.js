@@ -1,5 +1,6 @@
 const Yup = require('yup')
 const Response = require('../models/Response')
+const { RenderCreatedResponse } = require('../views/ResponseView')
 
 module.exports = {
     createResponse(req, res) {
@@ -19,7 +20,7 @@ module.exports = {
         })
 
         Response.create(data).then(response => {
-            return res.status(201).json(response)
+            return res.status(201).json(RenderCreatedResponse(response))
         }).catch(err => {
             return res.status(404).json({ msg: 'An error ocurred', errors: ['User not found'] })
         })

@@ -1,5 +1,6 @@
 const Comment = require('../models/Comment')
 const Yup = require('yup')
+const { RenderCreatedComment } = require('../views/CommentView')
 
 module.exports = {
     createComment(req, res) {
@@ -19,7 +20,7 @@ module.exports = {
         })
 
         Comment.create(data).then(comment => {
-            return res.status(201).json(comment)
+            return res.status(201).json(RenderCreatedComment(comment))
         }).catch(err => {
             return res.status(404).json({ msg: 'An error ocurred', errors: ['User not found'] })
         })

@@ -128,6 +128,8 @@ export default {
                     }
                 })
 
+                console.log(response.token)
+
                 const { id, uuid, name, description, avatar, banner, createdAt, updatedAt } = user.data
                 
                 this.setUser({

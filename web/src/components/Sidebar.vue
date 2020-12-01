@@ -92,8 +92,6 @@ export default {
                 })
 
                 this.setIsAuth(false)
-
-                this.$router.push('/login')
             }).catch(() => {
                 alert('erro ao deslogar')
             })

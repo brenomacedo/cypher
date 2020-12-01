@@ -1,6 +1,6 @@
 const Yup = require('yup')
 const Post = require('../models/Post')
-const User = require('../models/User')
+const { RenderPosts, RenderPost, RenderCreatedPost } = require('../views/PostView')
 
 module.exports = {
     createPost(req, res) {
@@ -28,8 +28,10 @@ module.exports = {
             return res.status(422).json({ msg: 'An error ocurred', errors: err.errors })
         })
 
-        Post.create(data).then(post => {
-            return res.status(201).json(post)
+        Post.create(data, {
+            include: [{ association: 'user' }, { association: 'comment', include: 'response' }]
+        }).then(post => {
+            return res.status(201).json(RenderCreatedPost(post))
         }).catch(err => {
             return res.status(500).json({ msg: 'An error ocurred', errors: ['Unknown error'] })
         })
@@ -38,8 +40,8 @@ module.exports = {
     getPosts(req, res) {
         Post.findAll({
             include: [{ association: 'user' }, { association: 'comment', include: 'response' }]
-        }).then(resp => {
-            return res.status(200).json(resp)
+        }).then(posts => {
+            return res.status(200).json(RenderPosts(posts))
         }).catch(err => {
             return res.status(500).json({ msg: "An error ocurred", errors: err })
         })

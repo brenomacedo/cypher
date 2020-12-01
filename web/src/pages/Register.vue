@@ -70,6 +70,7 @@ export default {
             this.activeForm = false
             const response = await this.emailRegister(this.email, this.password)
             if(response.registered) {
+                NProgress.done()
                 this.$router.push('/register/success')
             } else {
                 NProgress.done()
