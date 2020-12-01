@@ -94,6 +94,8 @@ export default {
                     }
                 })
             } else {
+                this.$vToastify.error("Erro ao logar", "Email ou senha inválidos!");
+
                 this.activeForm = true
             }
         },
@@ -122,6 +124,8 @@ export default {
 
                 this.$router.push('/profile')
             } else {
+                this.$vToastify.error("Erro ao logar", "Login cancelado");
+
                 this.activeForm = true
             }
         },

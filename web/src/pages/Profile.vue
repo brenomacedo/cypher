@@ -54,9 +54,6 @@ export default {
         ...mapGetters(['user'])
     },
     methods: {
-        printUser: function() {
-            console.log(this.user)
-        }
     }
 }
 </script>

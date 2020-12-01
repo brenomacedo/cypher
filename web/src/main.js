@@ -5,8 +5,17 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faBell, faUserFriends, faCog, faSearch, faUsers,
   faTimes, faThumbsUp, faPlay, faPlus, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueToastify from 'vue-toastify'
 import store from './store'
 import 'aos/dist/aos.css'
+
+Vue.use(VueToastify, {
+  position: "top-right",
+  canPause: true,
+  canTimeout: true,
+  defaultTitle: true,
+  duration: 3000
+})
 
 library.add(faHome, faBell, faUserFriends, faCog, faSearch,
   faUsers, faTimes, faThumbsUp, faPlay, faPlus, faDoorOpen)

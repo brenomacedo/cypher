@@ -15,7 +15,6 @@ export const googleLogin = async () => {
             token
         }
     } catch {
-        alert('error')
         return {
             authenticated: false
         }
@@ -33,7 +32,6 @@ export const emailLogin = async (email, password) => {
             avatar: response.user.photoURL
         }
     } catch {
-        alert('error')
         return {
             authenticated: false
         }
