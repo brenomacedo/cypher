@@ -50,6 +50,7 @@
 
 <script>
 import Lottie from 'vue-lottie'
+import NProgress from 'nprogress'
 import animationData from '../assets/animations/computer.json'
 import { googleLogin, emailLogin } from '../firebase'
 import { mapGetters, mapActions } from 'vuex'
@@ -86,16 +87,29 @@ export default {
 
             $event.preventDefault()
             this.activeForm = false
+            NProgress.start()
+
             const response = await this.emailLogin(this.email, this.password)
             if(response.authenticated) {
-                await api.post('/user', {}, {
+                const user = await api.post('/user', {}, {
                     headers: {
                         authorization: response.token
                     }
                 })
-            } else {
-                this.$vToastify.error("Erro ao logar", "Email ou senha inválidos!");
 
+                const { id, uuid, name, description, avatar, banner, createdAt, updatedAt } = user.data
+                
+                this.setUser({
+                    id, uuid, name, description, avatar, banner,
+                    createdAt, updatedAt, token: response.token
+                })
+
+                NProgress.done()
+
+                this.setIsAuth(true)
+            } else {
+                NProgress.done()
+                this.$vToastify.error("Erro ao logar", "Email ou senha inválidos!")
                 this.activeForm = true
             }
         },
@@ -105,6 +119,7 @@ export default {
             }
 
             this.activeForm = false
+            NProgress.start()
             const response = await this.googleLogin()
             if(response.authenticated) {
                 const user = await api.post('/user', {}, {
@@ -120,12 +135,13 @@ export default {
                     createdAt, updatedAt, token: response.token
                 })
 
-                this.setIsAuth(true)
+                NProgress.done()
 
+                this.setIsAuth(true)
                 this.$router.push('/profile')
             } else {
-                this.$vToastify.error("Erro ao logar", "Login cancelado");
-
+                this.$vToastify.error("Erro ao logar", "Login cancelado")
+                NProgress.done()
                 this.activeForm = true
             }
         },

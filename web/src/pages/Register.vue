@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import NProgress from 'nprogress'
 import Lottie from 'vue-lottie'
 import animationData from '../assets/animations/computer.json'
 import { emailRegister } from '../firebase'
@@ -63,11 +64,17 @@ export default {
             if(this.confirmPassword !== this.password) {
                 return alert('erro')
             }
+
+            NProgress.start()
+
             this.activeForm = false
             const response = await this.emailRegister(this.email, this.password)
             if(response.registered) {
                 this.$router.push('/register/success')
             } else {
+                NProgress.done()
+
+                this.$vToastify.error("Erro ao registrar", "Usuário já cadastrado!")
                 this.activeForm = true
             }
         },

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import 'nprogress/nprogress.css'
 import loading from './components/Loading'
 import { mapGetters } from 'vuex'
 
