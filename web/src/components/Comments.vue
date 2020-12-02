@@ -1,8 +1,8 @@
 <template>
     <div class="comments">
-        <p>Comments</p>
-        <div class="comments-list">
-            <comment />
+        <p @click="test">Comments</p>
+        <div v-for="comment in commentsArray" :key="comment.id" class="comments-list">
+            <comment :comment="comment" />
         </div>
         <div class="res-comment">
             <input placeholder="comment this post" type="text">
@@ -20,6 +20,14 @@ export default {
     name: "comments",
     components: {
         comment
+    },
+    props: {
+        commentsArray: Array
+    },
+    methods: {
+        test: function() {
+            console.log(this.commentsArray)
+        }
     }
 }
 </script>

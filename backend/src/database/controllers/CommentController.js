@@ -4,13 +4,14 @@ const { RenderCreatedComment } = require('../views/CommentView')
 
 module.exports = {
     createComment(req, res) {
-        const { content, postId } = req.body
+        const { content, postId, userId } = req.body
 
-        const data = { content, postId }
+        const data = { content, postId, userId }
 
         const schema = Yup.object().shape({
             content: Yup.string().required('The content is required!'),
-            postId: Yup.string().required('The postId is required!')
+            postId: Yup.string().required('The postId is required!'),
+            userId: Yup.string().required('The userId is required!')
         })
 
         schema.validate(data, {

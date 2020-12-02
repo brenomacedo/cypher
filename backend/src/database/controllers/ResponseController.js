@@ -4,13 +4,14 @@ const { RenderCreatedResponse } = require('../views/ResponseView')
 
 module.exports = {
     createResponse(req, res) {
-        const { content, commentId } = req.body
+        const { content, commentId, userId } = req.body
 
-        const data = { content, commentId }
+        const data = { content, commentId, userId }
 
         const schema = Yup.object().shape({
             content: Yup.string().required('The content is required!'),
-            commentId: Yup.string().required('The commentId is required!')
+            commentId: Yup.string().required('The commentId is required!'),
+            userId: Yup.string().required('The userId is required!')
         })
 
         schema.validate(data, {

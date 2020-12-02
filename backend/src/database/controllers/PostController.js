@@ -39,7 +39,7 @@ module.exports = {
 
     getPosts(req, res) {
         Post.findAll({
-            include: [{ association: 'user' }, { association: 'comment', include: 'response' }]
+            include: [{ association: 'user' }, { association: 'comment', include: [{ association: 'response', include: 'user' }, 'user'] }]
         }).then(posts => {
             return res.status(200).json(RenderPosts(posts))
         }).catch(err => {

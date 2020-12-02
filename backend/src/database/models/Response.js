@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require('sequelize')
 const sequelize = require('../database')
 const Comment = require('./Comment')
+const User = require('./User')
 
 class Response extends Model {}
 
@@ -27,6 +28,9 @@ Response.init({
     sequelize,
     tableName: 'response'
 })
+
+Response.belongsTo(User, { foreignKey: 'userId', as: 'user' })
+User.hasMany(Response, { foreignKey: 'userId', as: 'response' })
 
 Response.belongsTo(Comment, { foreignKey: 'commentId', as: 'comment' })
 Comment.hasMany(Response, { foreignKey: 'commentId', as: 'response' })

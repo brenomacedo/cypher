@@ -120,32 +120,9 @@ export default {
 
             this.activeForm = false
             NProgress.start()
-            const response = await this.googleLogin()
-            if(response.authenticated) {
-                const user = await api.post('/user', {}, {
-                    headers: {
-                        authorization: response.token
-                    }
-                })
-
-                console.log(response.token)
-
-                const { id, uuid, name, description, avatar, banner, createdAt, updatedAt } = user.data
-                
-                this.setUser({
-                    id, uuid, name, description, avatar, banner,
-                    createdAt, updatedAt, token: response.token
-                })
-
-                NProgress.done()
-
-                this.setIsAuth(true)
-                this.$router.push('/profile')
-            } else {
-                this.$vToastify.error("Erro ao logar", "Login cancelado")
-                NProgress.done()
-                this.activeForm = true
-            }
+            await this.googleLogin()
+            NProgress.done()
+           
         },
         toRegister: function() {
             if(!this.activeForm) {

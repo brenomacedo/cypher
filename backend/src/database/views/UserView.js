@@ -30,8 +30,8 @@ exports.RenderUsersPublic = users => {
 }
 
 exports.RenderCreatedUser = user => {
-    const { id, uuid, name, description, avatar, banner } = user
-    return { id, uuid, name, description, avatar, banner,
+    const { id, uuid, name, description, avatar, banner, email, createdAt, updatedAt } = user
+    return { id, uuid, name, description, avatar, banner, email, createdAt, updatedAt,
         requests: [],
         friends: [] }
 }

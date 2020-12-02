@@ -78,6 +78,8 @@ export default {
             this.active = !this.active
         },
         logout: function () {
+            this.setIsAuth(false)
+            
             firebase.auth().signOut().then(() => {
                 this.setUser({
                     id: undefined,
@@ -90,8 +92,7 @@ export default {
                     updatedAt: undefined,
                     token: undefined
                 })
-
-                this.setIsAuth(false)
+                this.$router.push('/login')
             }).catch(() => {
                 alert('erro ao deslogar')
             })

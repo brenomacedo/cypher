@@ -5,7 +5,7 @@
             <div class="author-name">Breno Macêdo</div>
         </div>
         <div class="description">
-            asdawdawd
+            {{ comment.content }}
         </div>
         <div class="responses">
             <response />
@@ -26,6 +26,9 @@ export default {
     name: "comment",
     components: {
         response
+    },
+    props: {
+        comment: Object
     }
 }
 </script>

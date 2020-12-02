@@ -1,34 +1,49 @@
 <template>
     <div class="text-post-container">
         <div class="text-post-author">
-            <div class="text-post-author-pic">
-
-            </div>
+            <img :src="post.user.avatar" class="text-post-author-pic" />
             <div class="text-post-author-name">
-                Breno Macêdo de Brito
+                {{ post.user.name }}
             </div>
             <div class="text-post-created-at">
-                ola
+                {{ date }}
             </div>
         </div>
         <div class="text-post-description">
-            Lorem ipsum dolor sit amet
+            {{ post.description }}
         </div>
         <div class="options">
             <font-awesome icon="thumbs-up" class="text-post-like"/>
             <span>Like</span>
         </div>
-        <comments />
+        <comments :commentsArray="post.comments" />
     </div>
 </template>
 
 <script>
 import comments from '../components/Comments'
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import 'dayjs/locale/pt-br'
 
 export default {
     name: "textpost",
     components: {
         comments
+    },
+    props: {
+        post: Object
+    },
+    computed: {
+        date: function () {
+            dayjs.extend(timezone)
+            dayjs.extend(utc)
+
+            const createdDate = dayjs(this.post.createdAt).tz("America/Sao_Paulo").format('DD/MM/YYYY H:M:ss')
+
+            return createdDate
+        }
     }
 }
 </script>

@@ -25,13 +25,13 @@ module.exports = {
 
             User.create({
                 name, email, avatar, banner, uuid
-            }).then(user => {
-                return res.status(201).json(RenderCreatedUser(user))
+            }).then(createdUser => {
+                return res.status(201).json(createdUser)
             }).catch(err => {
-                return res.status(500).json({ msg: 'An error ocurred!', errors: ['Unknown error'] })
+                return res.status(400).json({ msg: 'An error ocurred!', errors: ['Unknown error'] })
             })
         }).catch(() => {
-            return res.status(500).json({ msg: 'An error ocurred', errors: ['Unknown error'] })
+            return res.status(401).json({ msg: 'An error ocurred', errors: ['Unknown error'] })
         })
     },
 
