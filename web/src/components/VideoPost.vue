@@ -1,22 +1,28 @@
 <template>
     <div class="video-post-container">
         <div class="video-post-author">
-            <div class="video-post-author-pic">
-
-            </div>
+            <img :src="post.user.avatar" class="video-post-author-pic" />
             <div class="video-post-author-name">
-                Breno Macêdo de Brito
+                {{ post.user.name }}
             </div>
             <div class="video-post-created-at">
-                ola
+                {{ date }}
             </div>
         </div>
         <div class="video-post-description">
-            Lorem ipsum dolor sit amet
+            {{ post.description }}
         </div>
         <div class="video-post-video">
-            <div class="play">
-                <font-awesome icon="play" color="white" />
+            <video v-on:timeupdate="progress" ref="video" class="video-post-player"
+            :src="post.url" loop></video>
+        </div>
+        <div class="progress-bar-container">
+            <div class="controller">
+                <font-awesome v-if="paused" icon="play" @click="play" />
+                <font-awesome v-if="!paused" icon="pause" @click="pause" />
+            </div>
+            <div class="progress-bar">
+                <div class="progress" :style="{ width: `${videoProgress*100}%` }"></div>
             </div>
         </div>
         <div class="options">
@@ -29,11 +35,39 @@
 
 <script>
 import comments from '../components/Comments'
+import renderDate from '../utils/renderDate'
 
 export default {
     name: "videopost",
     components: {
         comments
+    },
+    data() {
+        return {
+            videoProgress: 0,
+            paused: true
+        }
+    },
+    props: {
+        post: Object
+    },
+    methods: {
+        play: function() {
+            this.paused = false
+            this.$refs.video.play()
+        },
+        pause: function() {
+            this.paused = true
+            this.$refs.video.pause()
+        },
+        progress: function () {
+            this.videoProgress = this.$refs.video.currentTime / this.$refs.video.duration
+        }
+    },
+    computed: {
+        date: function () {
+            return renderDate(this.post.createdAt)
+        }
     }
 }
 </script>
@@ -108,12 +142,12 @@ export default {
 
 .video-post-video {
     height: 500px;
-    background-image: url('../assets/images/rain.png');
     margin: 20px 0;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--shadow-disabled);
 }
 
 .play {
@@ -124,5 +158,33 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.video-post-player {
+    width: 100%;
+    height: 100%;
+}
+
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    background-color: var(--shadow-disabled);
+    flex: 1;
+    margin-left: 10px;
+    height: 7px;
+    border-radius: 5px;
+}
+
+.controller {
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    border-radius: 5px;
+    background-color: blue;
 }
 </style>

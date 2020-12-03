@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './routes'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faBell, faUserFriends, faCog, faSearch, faUsers,
-  faTimes, faThumbsUp, faPlay, faPlus, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
+  faTimes, faThumbsUp, faPlay, faPlus, faDoorOpen, faPause } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueToastify from 'vue-toastify'
 import store from './store'
@@ -18,7 +18,7 @@ Vue.use(VueToastify, {
 })
 
 library.add(faHome, faBell, faUserFriends, faCog, faSearch,
-  faUsers, faTimes, faThumbsUp, faPlay, faPlus, faDoorOpen)
+  faUsers, faTimes, faThumbsUp, faPlay, faPlus, faDoorOpen, faPause)
 
 Vue.component('font-awesome', FontAwesomeIcon)
 
