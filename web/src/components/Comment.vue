@@ -1,14 +1,17 @@
 <template>
     <div class="comment">
         <div class="author">
-            <div class="author-pic"></div>
-            <div class="author-name">Breno Macêdo</div>
+            <img :src="comment.user.avatar" class="author-pic" />
+            <div class="author-name">{{ comment.user.name }}</div>
+            <div class="text-post-created-at">
+                {{ date }}
+            </div>
         </div>
         <div class="description">
             {{ comment.content }}
         </div>
-        <div class="responses">
-            <response />
+        <div v-for="response in comment.responses" :key="response.id" class="responses">
+            <response :response="response" />
         </div>
         <div class="make-response">
             <input placeholder="answer this comment" type="text">
@@ -21,6 +24,10 @@
 
 <script>
 import response from '../components/Response'
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import 'dayjs/locale/pt-br'
 
 export default {
     name: "comment",
@@ -29,6 +36,16 @@ export default {
     },
     props: {
         comment: Object
+    },
+    computed: {
+        date: function() {
+            dayjs.extend(timezone)
+            dayjs.extend(utc)
+
+            const createdDate = dayjs(this.comment.createdAt).tz("America/Sao_Paulo").format('DD/MM/YYYY H:M:ss')
+
+            return createdDate
+        }
     }
 }
 </script>
@@ -97,5 +114,13 @@ export default {
 
 .search-icon {
     font-size: 10px;
+}
+
+.text-post-created-at {
+    flex: 1;
+    text-align: end;
+    font-family: var(--roboto);
+    color: var(--underwater);
+    font-size: 12px;
 }
 </style>

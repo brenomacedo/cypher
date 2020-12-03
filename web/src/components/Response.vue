@@ -1,18 +1,38 @@
 <template>
     <div class="response">
         <div class="author">
-            <div class="author-pic"></div>
-            <div class="author-name">Breno Macedo</div>
+            <img :src="response.user.avatar" class="author-pic" />
+            <div class="author-name">{{ response.user.name }}</div>
+            <div class="text-post-created-at">{{ date }}</div>
         </div>
         <div class="description">
-            Eae
+            {{ response.content }}
         </div>
     </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import 'dayjs/locale/pt-br'
+
+
 export default {
-    name: "response"
+    name: "response",
+    props: {
+        response: Object
+    },
+    computed: {
+        date: function() {
+            dayjs.extend(timezone)
+            dayjs.extend(utc)
+
+            const createdDate = dayjs(this.response.createdAt).tz("America/Sao_Paulo").format('DD/MM/YYYY H:M:ss')
+
+            return createdDate
+        }
+    }
 }
 </script>
 
@@ -47,5 +67,13 @@ export default {
 .description {
     font-family: var(--roboto);
     margin-top: 10px;
+}
+
+.text-post-created-at {
+    flex: 1;
+    text-align: end;
+    font-family: var(--roboto);
+    color: var(--underwater);
+    font-size: 12px;
 }
 </style>
