@@ -12,10 +12,7 @@
 </template>
 
 <script>
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone'
-import utc from 'dayjs/plugin/utc'
-import 'dayjs/locale/pt-br'
+import renderDate from '../utils/renderDate'
 
 
 export default {
@@ -24,13 +21,8 @@ export default {
         response: Object
     },
     computed: {
-        date: function() {
-            dayjs.extend(timezone)
-            dayjs.extend(utc)
-
-            const createdDate = dayjs(this.response.createdAt).tz("America/Sao_Paulo").format('DD/MM/YYYY H:M:ss')
-
-            return createdDate
+        date: function () {
+            return renderDate(this.response.createdAt)
         }
     }
 }

@@ -24,10 +24,7 @@
 
 <script>
 import response from '../components/Response'
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone'
-import utc from 'dayjs/plugin/utc'
-import 'dayjs/locale/pt-br'
+import renderDate from '../utils/renderDate'
 
 export default {
     name: "comment",
@@ -38,13 +35,8 @@ export default {
         comment: Object
     },
     computed: {
-        date: function() {
-            dayjs.extend(timezone)
-            dayjs.extend(utc)
-
-            const createdDate = dayjs(this.comment.createdAt).tz("America/Sao_Paulo").format('DD/MM/YYYY H:M:ss')
-
-            return createdDate
+        date: function () {
+            return renderDate(this.comment.createdAt)
         }
     }
 }

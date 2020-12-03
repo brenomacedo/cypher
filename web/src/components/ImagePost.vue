@@ -1,20 +1,18 @@
 <template>
     <div class="image-post-container">
         <div class="image-post-author">
-            <div class="image-post-author-pic">
-
-            </div>
+            <img :src="post.user.avatar" class="image-post-author-pic"/>
             <div class="image-post-author-name">
-                Breno Macêdo de Brito
+                {{ post.user.name }}
             </div>
             <div class="image-post-created-at">
-                ola
+                {{ date }}
             </div>
         </div>
         <div class="image-post-description">
-            Lorem ipsum dolor sit amet
+            {{ post.description }}
         </div>
-        <div class="image-post-image"></div>
+        <img :src="post.url" class="image-post-image" />
         <div class="options">
             <font-awesome icon="thumbs-up" class="image-post-like"/>
             <span>Like</span>
@@ -25,11 +23,20 @@
 
 <script>
 import comments from '../components/Comments'
+import renderDate from '../utils/renderDate'
 
 export default {
     name: "imagepost",
     components: {
         comments
+    },
+    props: {
+        post: Object
+    },
+    computed: {
+        date: function() {
+            return renderDate(this.post.createdAt)
+        }
     }
 }
 </script>
@@ -104,8 +111,10 @@ export default {
 
 .image-post-image {
     height: 500px;
-    background-image: url('../assets/images/rain.png');
+    width: 100%;
     margin: 20px 0;
     border-radius: 20px;
+    object-fit: contain;
+    background-color: var(--shadow-disabled);
 }
 </style>

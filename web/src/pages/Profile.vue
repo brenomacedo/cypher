@@ -17,7 +17,9 @@
                 </div>
             </div>
             <div v-for="post in posts" :key="post.id" class="posts">
-                <textpost :post="post" />
+                <textpost v-if="post.type === 'TEXT'" :post="post" />
+                <imagepost v-else-if="post.type === 'IMAGE'" :post="post" />
+                <videopost v-else-if="post.type === 'VIDEO'" :post="post" />
             </div>
         </div>
         <leftsidebar :windowW="windowW" />
@@ -29,14 +31,14 @@ import sidebar from '../components/Sidebar'
 import leftsidebar from '../components/LeftSideBar'
 import topcommunity from '../components/TopCommunity'
 import textpost from '../components/TextPost'
-// import imagepost from '../components/ImagePost'
-// import videopost from '../components/VideoPost'
+import imagepost from '../components/ImagePost'
+import videopost from '../components/VideoPost'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: "profile",
     components: {
-        sidebar, leftsidebar, topcommunity, textpost,/* imagepost, videopost*/
+        sidebar, leftsidebar, topcommunity, textpost, imagepost, videopost
     },
     data() {
         return {
