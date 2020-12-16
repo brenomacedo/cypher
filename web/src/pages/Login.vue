@@ -121,6 +121,8 @@ export default {
             this.activeForm = false
             NProgress.start()
             await this.googleLogin()
+            this.setIsAuth(true)
+            this.$router.push('/profile')
             NProgress.done()
            
         },
