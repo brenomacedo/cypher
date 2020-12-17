@@ -2,8 +2,7 @@
 <h2 align="center">A simple social media.</h2>
 
 <h1 align="center">Technologies used:</h1>
-<h2>- 💙 Typescript</h2>
-<h2>- 🌀 TypeORM</h2>
+<h2>- 🌀 Sequelize</h2>
 <h2>- ☄ NodeJS</h2>
 <h2>- ⚛ VueJS</h2>
 <h2>- 💽 Firebase</h2>
